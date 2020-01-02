@@ -1,0 +1,25 @@
+{% if messages %}
+
+{% for message in messages %}
+    <div id="message" class="container">
+        <!-- message.tags is used to take on the class specified in the settings.py file MESSAGE_TAGS list. alert-dismissible makes the alert dismissible. &times; brings an x sign -->
+        <div class="alert alert-{{ message.tags }} alert-dismissible text-center"
+
+          role="alert">
+            <button class="close" type="button" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
+
+            <strong>
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                    Error:
+                {% else %}
+                        {{ message.tags | title  }}
+                {% endif %}
+            </strong>
+            {{ message }}
+        </div>
+    </div>
+
+{% endfor %}
+
+
+{% endif %}
